@@ -15,6 +15,7 @@
 		6D8512B51B2DBD320074C998 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6D8512B41B2DBD320074C998 /* Images.xcassets */; };
 		6D8512B81B2DBD320074C998 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6D8512B61B2DBD320074C998 /* LaunchScreen.xib */; };
 		6D8512C41B2DBD320074C998 /* ToReadListTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D8512C31B2DBD320074C998 /* ToReadListTests.m */; };
+		6DC04B351B2ED61E00C3FB71 /* BookParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DC04B341B2ED61E00C3FB71 /* BookParser.m */; };
 		B946E2E1230F180CAA9D4E5B /* libPods-ToReadList.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 53BA6ADE5DD254B366D542D1 /* libPods-ToReadList.a */; };
 /* End PBXBuildFile section */
 
@@ -47,6 +48,8 @@
 		6D8512BD1B2DBD320074C998 /* ToReadListTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ToReadListTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6D8512C21B2DBD320074C998 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6D8512C31B2DBD320074C998 /* ToReadListTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ToReadListTests.m; sourceTree = "<group>"; };
+		6DC04B331B2ED61E00C3FB71 /* BookParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BookParser.h; path = ToReadList/Model/BookParser.h; sourceTree = "<group>"; };
+		6DC04B341B2ED61E00C3FB71 /* BookParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BookParser.m; path = ToReadList/Model/BookParser.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,6 +102,7 @@
 		6D8512A31B2DBD320074C998 /* ToReadList */ = {
 			isa = PBXGroup;
 			children = (
+				6DC04B361B2ED62400C3FB71 /* Model */,
 				6D8512A81B2DBD320074C998 /* AppDelegate.h */,
 				6D8512A91B2DBD320074C998 /* AppDelegate.m */,
 				6D8512AB1B2DBD320074C998 /* FirstViewController.h */,
@@ -137,6 +141,16 @@
 				6D8512C21B2DBD320074C998 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		6DC04B361B2ED62400C3FB71 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				6DC04B331B2ED61E00C3FB71 /* BookParser.h */,
+				6DC04B341B2ED61E00C3FB71 /* BookParser.m */,
+			);
+			name = Model;
+			path = ..;
 			sourceTree = "<group>";
 		};
 		A9A395653E38A783D7D5D9A3 /* Pods */ = {
@@ -283,6 +297,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6DC04B351B2ED61E00C3FB71 /* BookParser.m in Sources */,
 				6D8512B01B2DBD320074C998 /* ScanViewController.m in Sources */,
 				6D8512AA1B2DBD320074C998 /* AppDelegate.m in Sources */,
 				6D8512AD1B2DBD320074C998 /* FirstViewController.m in Sources */,

@@ -8,6 +8,7 @@
 
 #import "ScanViewController.h"
 #import <MTBBarcodeScanner.h>
+#import "BookParser.h"
 
 @interface ScanViewController ()
 @property (weak, nonatomic) IBOutlet UIImageView* imageView;
@@ -15,12 +16,25 @@
 @property (strong, nonatomic) MTBBarcodeScanner* scanner;
 @end
 
-@implementation ScanViewController
+@implementation ScanViewController {
+    BookParser* parser;
+}
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     self.scanner = [[MTBBarcodeScanner alloc] initWithPreviewView:self.imageView];
+    parser = [[BookParser alloc] init];
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [self startScan];
+}
+
+- (void)viewDidDisappear:(BOOL)animated
+{
+    [self.scanner stopScanning];
 }
 
 - (void)didReceiveMemoryWarning
@@ -29,14 +43,21 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (IBAction)scan:(id)sender
+#pragma mark - scan
+- (void)startScan
 {
     [MTBBarcodeScanner requestCameraPermissionWithSuccess:^(BOOL success) {
         if (success) {
             [self.scanner startScanningWithResultBlock:^(NSArray* codes) {
                 AVMetadataMachineReadableCodeObject* code = [codes firstObject];
-                self.textView.text = code.stringValue;
                 [self.scanner stopScanning];
+                if (![parser validateISBN:code.stringValue]) {
+                    UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Hint" message:@"條碼不是ISBN格式" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+                    [alert show];
+                }
+                else {
+                    self.textView.text = code.stringValue;
+                }
             }];
         }
         else {
@@ -44,4 +65,11 @@
         }
     }];
 }
+
+#pragma mark - alertview delegate
+- (void)alertView:(UIAlertView*)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    [self startScan];
+}
+
 @end

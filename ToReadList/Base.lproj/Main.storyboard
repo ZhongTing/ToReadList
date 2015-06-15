@@ -59,25 +59,8 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="8LK-73-bah">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="300"/>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JVH-3P-UMb" userLabel="Scan Button">
-                                <rect key="frame" x="10" y="310" width="580" height="50"/>
-                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="202-PP-GhT"/>
-                                </constraints>
-                                <state key="normal" title="Scan">
-                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="layer.cornerRadius" value="10"/>
-                                </userDefinedRuntimeAttributes>
-                                <connections>
-                                    <action selector="scan:" destination="8rJ-Kc-sve" eventType="touchUpInside" id="ivq-d9-AAf"/>
-                                </connections>
-                            </button>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IA7-3k-GjW">
-                                <rect key="frame" x="10" y="370" width="580" height="170"/>
+                                <rect key="frame" x="10" y="310" width="580" height="231"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -85,23 +68,20 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="JVH-3P-UMb" firstAttribute="leading" secondItem="IA7-3k-GjW" secondAttribute="leading" id="30K-d2-TGd"/>
-                            <constraint firstItem="JVH-3P-UMb" firstAttribute="width" secondItem="IA7-3k-GjW" secondAttribute="width" id="AYf-VP-69X"/>
-                            <constraint firstAttribute="trailing" secondItem="JVH-3P-UMb" secondAttribute="trailing" constant="10" id="GaF-27-8b3"/>
                             <constraint firstItem="8LK-73-bah" firstAttribute="top" secondItem="QS5-Rx-YEW" secondAttribute="top" id="LTc-yC-2xL"/>
-                            <constraint firstItem="JVH-3P-UMb" firstAttribute="leading" secondItem="QS5-Rx-YEW" secondAttribute="leading" constant="10" id="MkL-KF-DSr"/>
-                            <constraint firstItem="JVH-3P-UMb" firstAttribute="top" secondItem="8LK-73-bah" secondAttribute="bottom" constant="10" id="XRQ-99-mHB"/>
+                            <constraint firstItem="IA7-3k-GjW" firstAttribute="leading" secondItem="QS5-Rx-YEW" secondAttribute="leading" constant="10" id="XdB-3P-QBJ"/>
                             <constraint firstAttribute="bottom" secondItem="8LK-73-bah" secondAttribute="bottom" constant="300" id="aOK-t2-YRh"/>
                             <constraint firstItem="8LK-73-bah" firstAttribute="leading" secondItem="QS5-Rx-YEW" secondAttribute="leading" id="gSn-qr-0Rm"/>
-                            <constraint firstAttribute="bottom" secondItem="IA7-3k-GjW" secondAttribute="bottom" constant="60" id="gWb-gC-5jL"/>
-                            <constraint firstItem="IA7-3k-GjW" firstAttribute="top" secondItem="JVH-3P-UMb" secondAttribute="bottom" constant="10" id="uvE-nE-JlJ"/>
+                            <constraint firstAttribute="trailing" secondItem="IA7-3k-GjW" secondAttribute="trailing" constant="10" id="jLt-bw-mZ4"/>
+                            <constraint firstItem="Djb-ko-YwX" firstAttribute="top" secondItem="IA7-3k-GjW" secondAttribute="bottom" constant="10" id="ssC-uy-lRJ"/>
                             <constraint firstAttribute="trailing" secondItem="8LK-73-bah" secondAttribute="trailing" id="xGH-zT-dft"/>
+                            <constraint firstItem="IA7-3k-GjW" firstAttribute="top" secondItem="8LK-73-bah" secondAttribute="bottom" constant="10" id="zI8-yJ-kFy"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" tag="1" title="Scan" image="second" id="cPa-gy-q4n" userLabel="Scan"/>
                     <connections>
                         <outlet property="imageView" destination="8LK-73-bah" id="jdz-Q0-o0L"/>
-                        <outlet property="textView" destination="IA7-3k-GjW" id="hg0-Y6-xeL"/>
+                        <outlet property="textView" destination="IA7-3k-GjW" id="hDF-4B-LBr"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Nw-L8-lE0" sceneMemberID="firstResponder"/>

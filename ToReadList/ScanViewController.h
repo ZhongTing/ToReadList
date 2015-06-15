@@ -8,8 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ScanViewController : UIViewController
-
+@interface ScanViewController : UIViewController <UIAlertViewDelegate>
 
 @end
-
