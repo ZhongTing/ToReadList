@@ -154,10 +154,10 @@
 		6DC04B4E1B2EEFD300C3FB71 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				6DC04B4F1B2EEFD300C3FB71 /* BookParser.h */,
-				6DC04B501B2EEFD300C3FB71 /* BookParser.m */,
 				6DC04B511B2EEFD300C3FB71 /* Human */,
 				6DC04B541B2EEFD300C3FB71 /* Machine */,
+				6DC04B4F1B2EEFD300C3FB71 /* BookParser.h */,
+				6DC04B501B2EEFD300C3FB71 /* BookParser.m */,
 				6DC04B571B2EEFD300C3FB71 /* Model.xcdatamodeld */,
 			);
 			path = Model;

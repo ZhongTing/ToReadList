@@ -7,8 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "Book.h"
 
 @interface BookParser : NSObject
 - (BOOL)validateISBN:(NSString*)ISBN;
-- (void)requestBookInfoWithISBN:(NSString*)ISBN;
+- (void)requestBookInfoWithISBN:(NSString*)ISBN success:(void (^)(Book*))sucess;
 @end

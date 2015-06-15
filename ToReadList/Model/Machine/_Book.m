@@ -42,6 +42,12 @@ const struct BookAttributes BookAttributes = {
 + (NSSet*)keyPathsForValuesAffectingValueForKey:(NSString*)key {
 	NSSet *keyPaths = [super keyPathsForValuesAffectingValueForKey:key];
 
+	if ([key isEqualToString:@"pageCountValue"]) {
+		NSSet *affectingKey = [NSSet setWithObject:@"pageCount"];
+		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
+		return keyPaths;
+	}
+
 	return keyPaths;
 }
 
@@ -56,6 +62,24 @@ const struct BookAttributes BookAttributes = {
 @dynamic isbn13;
 
 @dynamic pageCount;
+
+- (int32_t)pageCountValue {
+	NSNumber *result = [self pageCount];
+	return [result intValue];
+}
+
+- (void)setPageCountValue:(int32_t)value_ {
+	[self setPageCount:[NSNumber numberWithInt:value_]];
+}
+
+- (int32_t)primitivePageCountValue {
+	NSNumber *result = [self primitivePageCount];
+	return [result intValue];
+}
+
+- (void)setPrimitivePageCountValue:(int32_t)value_ {
+	[self setPrimitivePageCount:[NSNumber numberWithInt:value_]];
+}
 
 @dynamic publishDate;
 

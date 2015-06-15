@@ -46,6 +46,7 @@
 #pragma mark - scan
 - (void)startScan
 {
+    [parser requestBookInfoWithISBN:nil success:nil];
     [MTBBarcodeScanner requestCameraPermissionWithSuccess:^(BOOL success) {
         if (success) {
             [self.scanner startScanningWithResultBlock:^(NSArray* codes) {
@@ -56,8 +57,10 @@
                     [alert show];
                 }
                 else {
-                    [parser requestBookInfoWithISBN:code.stringValue];
-                    self.textView.text = code.stringValue;
+                    [parser requestBookInfoWithISBN:code.stringValue
+                                            success:^(Book* book) {
+                                                [self onRequestBookSucess:book];
+                                            }];
                 }
             }];
         }
@@ -65,6 +68,11 @@
             // The user denied access to the camera
         }
     }];
+}
+
+- (void)onRequestBookSucess:(Book*)book
+{
+    self.textView.text = [NSString stringWithFormat:@"%@", book];
 }
 
 #pragma mark - alertview delegate

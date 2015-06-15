@@ -45,7 +45,11 @@ extern const struct BookAttributes {
 
 //- (BOOL)validateIsbn13:(id*)value_ error:(NSError**)error_;
 
-@property (nonatomic, strong) NSString* pageCount;
+@property (nonatomic, strong) NSNumber* pageCount;
+
+@property (atomic) int32_t pageCountValue;
+- (int32_t)pageCountValue;
+- (void)setPageCountValue:(int32_t)value_;
 
 //- (BOOL)validatePageCount:(id*)value_ error:(NSError**)error_;
 
@@ -84,8 +88,11 @@ extern const struct BookAttributes {
 - (NSString*)primitiveIsbn13;
 - (void)setPrimitiveIsbn13:(NSString*)value;
 
-- (NSString*)primitivePageCount;
-- (void)setPrimitivePageCount:(NSString*)value;
+- (NSNumber*)primitivePageCount;
+- (void)setPrimitivePageCount:(NSNumber*)value;
+
+- (int32_t)primitivePageCountValue;
+- (void)setPrimitivePageCountValue:(int32_t)value_;
 
 - (NSString*)primitivePublishDate;
 - (void)setPrimitivePublishDate:(NSString*)value;

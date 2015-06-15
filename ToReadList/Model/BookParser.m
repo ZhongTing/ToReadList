@@ -18,22 +18,31 @@ NSString* api = @"https://www.googleapis.com/books/v1/volumes?q=isbn:%@&key=%@";
     return [ISBN length] == 10 || [ISBN length] == 13;
 }
 
-- (void)requestBookInfoWithISBN:(NSString*)ISBN
+- (void)requestBookInfoWithISBN:(NSString*)ISBN success:(void (^)(Book*))sucess
 {
-    ISBN = @"9780132350884";
+    //    ISBN = @"9780132350884";
+    //    ISBN = @"9789573264934";
     AFHTTPRequestOperationManager* manager = [AFHTTPRequestOperationManager manager];
     [manager GET:[NSString stringWithFormat:api, ISBN, key]
         parameters:nil
         success:^(AFHTTPRequestOperation* operation, id responseObject) {
-            NSLog(@"JSON: %@", responseObject);
-            [self parse:responseObject];
+            Book* book = [self parse:responseObject];
+            if (sucess) {
+                sucess(book);
+            }
         }
         failure:^(AFHTTPRequestOperation* operation, NSError* error) {
             NSLog(@"Error: %@", error);
         }];
 }
 
-- (void)parse:(NSDictionary*)data
+- (Book*)parse:(NSDictionary*)data
 {
+    Book* book;
+    if ([data[@"totalItems"] integerValue] != 0) {
+        NSDictionary* info = data[@"items"][0][@"volumeInfo"];
+        book = [Book initWithDataObject:info];
+    }
+    return book;
 }
 @end
