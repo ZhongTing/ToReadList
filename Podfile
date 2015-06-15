@@ -3,6 +3,7 @@
 
 target 'ToReadList' do
 pod "MTBBarcodeScanner"
+pod "AFNetworking", "~> 2.0"
 end
 
 target 'ToReadListTests' do
