@@ -15,7 +15,10 @@
 		6D8512B51B2DBD320074C998 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6D8512B41B2DBD320074C998 /* Images.xcassets */; };
 		6D8512B81B2DBD320074C998 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6D8512B61B2DBD320074C998 /* LaunchScreen.xib */; };
 		6D8512C41B2DBD320074C998 /* ToReadListTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D8512C31B2DBD320074C998 /* ToReadListTests.m */; };
-		6DC04B351B2ED61E00C3FB71 /* BookParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DC04B341B2ED61E00C3FB71 /* BookParser.m */; };
+		6DC04B591B2EEFD300C3FB71 /* BookParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DC04B501B2EEFD300C3FB71 /* BookParser.m */; };
+		6DC04B5A1B2EEFD300C3FB71 /* Book.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DC04B531B2EEFD300C3FB71 /* Book.m */; };
+		6DC04B5B1B2EEFD300C3FB71 /* _Book.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DC04B561B2EEFD300C3FB71 /* _Book.m */; };
+		6DC04B5C1B2EEFD300C3FB71 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 6DC04B571B2EEFD300C3FB71 /* Model.xcdatamodeld */; };
 		B946E2E1230F180CAA9D4E5B /* libPods-ToReadList.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 53BA6ADE5DD254B366D542D1 /* libPods-ToReadList.a */; };
 /* End PBXBuildFile section */
 
@@ -48,8 +51,13 @@
 		6D8512BD1B2DBD320074C998 /* ToReadListTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ToReadListTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6D8512C21B2DBD320074C998 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6D8512C31B2DBD320074C998 /* ToReadListTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ToReadListTests.m; sourceTree = "<group>"; };
-		6DC04B331B2ED61E00C3FB71 /* BookParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BookParser.h; path = ToReadList/Model/BookParser.h; sourceTree = "<group>"; };
-		6DC04B341B2ED61E00C3FB71 /* BookParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BookParser.m; path = ToReadList/Model/BookParser.m; sourceTree = "<group>"; };
+		6DC04B4F1B2EEFD300C3FB71 /* BookParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BookParser.h; sourceTree = "<group>"; };
+		6DC04B501B2EEFD300C3FB71 /* BookParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BookParser.m; sourceTree = "<group>"; };
+		6DC04B521B2EEFD300C3FB71 /* Book.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Book.h; sourceTree = "<group>"; };
+		6DC04B531B2EEFD300C3FB71 /* Book.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Book.m; sourceTree = "<group>"; };
+		6DC04B551B2EEFD300C3FB71 /* _Book.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _Book.h; sourceTree = "<group>"; };
+		6DC04B561B2EEFD300C3FB71 /* _Book.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _Book.m; sourceTree = "<group>"; };
+		6DC04B581B2EEFD300C3FB71 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,7 +110,7 @@
 		6D8512A31B2DBD320074C998 /* ToReadList */ = {
 			isa = PBXGroup;
 			children = (
-				6DC04B361B2ED62400C3FB71 /* Model */,
+				6DC04B4E1B2EEFD300C3FB71 /* Model */,
 				6D8512A81B2DBD320074C998 /* AppDelegate.h */,
 				6D8512A91B2DBD320074C998 /* AppDelegate.m */,
 				6D8512AB1B2DBD320074C998 /* FirstViewController.h */,
@@ -143,14 +151,34 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		6DC04B361B2ED62400C3FB71 /* Model */ = {
+		6DC04B4E1B2EEFD300C3FB71 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				6DC04B331B2ED61E00C3FB71 /* BookParser.h */,
-				6DC04B341B2ED61E00C3FB71 /* BookParser.m */,
+				6DC04B4F1B2EEFD300C3FB71 /* BookParser.h */,
+				6DC04B501B2EEFD300C3FB71 /* BookParser.m */,
+				6DC04B511B2EEFD300C3FB71 /* Human */,
+				6DC04B541B2EEFD300C3FB71 /* Machine */,
+				6DC04B571B2EEFD300C3FB71 /* Model.xcdatamodeld */,
 			);
-			name = Model;
-			path = ..;
+			path = Model;
+			sourceTree = "<group>";
+		};
+		6DC04B511B2EEFD300C3FB71 /* Human */ = {
+			isa = PBXGroup;
+			children = (
+				6DC04B521B2EEFD300C3FB71 /* Book.h */,
+				6DC04B531B2EEFD300C3FB71 /* Book.m */,
+			);
+			path = Human;
+			sourceTree = "<group>";
+		};
+		6DC04B541B2EEFD300C3FB71 /* Machine */ = {
+			isa = PBXGroup;
+			children = (
+				6DC04B551B2EEFD300C3FB71 /* _Book.h */,
+				6DC04B561B2EEFD300C3FB71 /* _Book.m */,
+			);
+			path = Machine;
 			sourceTree = "<group>";
 		};
 		A9A395653E38A783D7D5D9A3 /* Pods */ = {
@@ -297,10 +325,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6DC04B351B2ED61E00C3FB71 /* BookParser.m in Sources */,
 				6D8512B01B2DBD320074C998 /* ScanViewController.m in Sources */,
+				6DC04B591B2EEFD300C3FB71 /* BookParser.m in Sources */,
+				6DC04B5B1B2EEFD300C3FB71 /* _Book.m in Sources */,
 				6D8512AA1B2DBD320074C998 /* AppDelegate.m in Sources */,
+				6DC04B5A1B2EEFD300C3FB71 /* Book.m in Sources */,
 				6D8512AD1B2DBD320074C998 /* FirstViewController.m in Sources */,
+				6DC04B5C1B2EEFD300C3FB71 /* Model.xcdatamodeld in Sources */,
 				6D8512A71B2DBD320074C998 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -510,6 +541,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		6DC04B571B2EEFD300C3FB71 /* Model.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				6DC04B581B2EEFD300C3FB71 /* Model.xcdatamodel */,
+			);
+			currentVersion = 6DC04B581B2EEFD300C3FB71 /* Model.xcdatamodel */;
+			path = Model.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 6D8512991B2DBD320074C998 /* Project object */;
 }
