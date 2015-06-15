@@ -56,6 +56,7 @@
                     [alert show];
                 }
                 else {
+                    [parser requestBookInfoWithISBN:code.stringValue];
                     self.textView.text = code.stringValue;
                 }
             }];

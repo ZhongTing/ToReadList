@@ -10,4 +10,5 @@
 
 @interface BookParser : NSObject
 - (BOOL)validateISBN:(NSString*)ISBN;
+- (void)requestBookInfoWithISBN:(NSString*)ISBN;
 @end
