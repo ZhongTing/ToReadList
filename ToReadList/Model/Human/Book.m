@@ -20,8 +20,12 @@
     book.publisher = data[@"publisher"];
     book.publishDate = data[@"publishedDate"];
     book.desc = data[@"description"];
-    book.pageCountValue = [data[@"pageCount"] integerValue];
+    book.pageCountValue = [data[@"pageCount"] longValue];
+    book.ratingsCountValue = [data[@"ratingsCount"] longValue];
+    book.averageRating = data[@"averageRating"];
     book.coverUrl = data[@"imageLinks"][@"thumbnail"];
+    book.timestamp = [NSDate date];
+
     [book setISBN:data[@"industryIdentifiers"]];
     [book setAuthorWithArray:data[@"authors"]];
     //    [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreAndWait];

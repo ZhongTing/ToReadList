@@ -5,6 +5,7 @@
 
 const struct BookAttributes BookAttributes = {
 	.author = @"author",
+	.averageRating = @"averageRating",
 	.coverUrl = @"coverUrl",
 	.desc = @"desc",
 	.isbn10 = @"isbn10",
@@ -12,7 +13,9 @@ const struct BookAttributes BookAttributes = {
 	.pageCount = @"pageCount",
 	.publishDate = @"publishDate",
 	.publisher = @"publisher",
+	.ratingsCount = @"ratingsCount",
 	.subtitle = @"subtitle",
+	.timestamp = @"timestamp",
 	.title = @"title",
 };
 
@@ -47,11 +50,18 @@ const struct BookAttributes BookAttributes = {
 		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
 		return keyPaths;
 	}
+	if ([key isEqualToString:@"ratingsCountValue"]) {
+		NSSet *affectingKey = [NSSet setWithObject:@"ratingsCount"];
+		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
+		return keyPaths;
+	}
 
 	return keyPaths;
 }
 
 @dynamic author;
+
+@dynamic averageRating;
 
 @dynamic coverUrl;
 
@@ -63,29 +73,51 @@ const struct BookAttributes BookAttributes = {
 
 @dynamic pageCount;
 
-- (int32_t)pageCountValue {
+- (int64_t)pageCountValue {
 	NSNumber *result = [self pageCount];
-	return [result intValue];
+	return [result longLongValue];
 }
 
-- (void)setPageCountValue:(int32_t)value_ {
-	[self setPageCount:[NSNumber numberWithInt:value_]];
+- (void)setPageCountValue:(int64_t)value_ {
+	[self setPageCount:[NSNumber numberWithLongLong:value_]];
 }
 
-- (int32_t)primitivePageCountValue {
+- (int64_t)primitivePageCountValue {
 	NSNumber *result = [self primitivePageCount];
-	return [result intValue];
+	return [result longLongValue];
 }
 
-- (void)setPrimitivePageCountValue:(int32_t)value_ {
-	[self setPrimitivePageCount:[NSNumber numberWithInt:value_]];
+- (void)setPrimitivePageCountValue:(int64_t)value_ {
+	[self setPrimitivePageCount:[NSNumber numberWithLongLong:value_]];
 }
 
 @dynamic publishDate;
 
 @dynamic publisher;
 
+@dynamic ratingsCount;
+
+- (int64_t)ratingsCountValue {
+	NSNumber *result = [self ratingsCount];
+	return [result longLongValue];
+}
+
+- (void)setRatingsCountValue:(int64_t)value_ {
+	[self setRatingsCount:[NSNumber numberWithLongLong:value_]];
+}
+
+- (int64_t)primitiveRatingsCountValue {
+	NSNumber *result = [self primitiveRatingsCount];
+	return [result longLongValue];
+}
+
+- (void)setPrimitiveRatingsCountValue:(int64_t)value_ {
+	[self setPrimitiveRatingsCount:[NSNumber numberWithLongLong:value_]];
+}
+
 @dynamic subtitle;
+
+@dynamic timestamp;
 
 @dynamic title;
 
