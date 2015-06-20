@@ -7,6 +7,7 @@
 //
 
 #import "ScanViewController.h"
+#import <MagicalRecord/MagicalRecord.h>
 #import <MTBBarcodeScanner.h>
 #import "BookParser.h"
 
@@ -72,7 +73,12 @@
 
 - (void)onRequestBookSucess:(Book*)book
 {
+    NSLog(@"request book success");
     self.textView.text = [NSString stringWithFormat:@"%@", book];
+    
+    Book *saveBook = [Book MR_createEntity];
+    saveBook = book;
+    [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreAndWait];
 }
 
 #pragma mark - alertview delegate
