@@ -7,8 +7,12 @@
 //
 
 #import "FirstViewController.h"
+#import <MagicalRecord/MagicalRecord.h>
+#import "Book.h"
 
-@interface FirstViewController ()
+@interface FirstViewController (){
+    NSMutableArray *bookArray;
+}
 
 @end
 
@@ -18,12 +22,89 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
+    
+    bookArray = [NSMutableArray array];
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)viewWillAppear:(BOOL)animated{
+    NSArray *array = [Book MR_findAll];
+    
+    NSLog(@"array count = %d", array.count);
+    
+    bookArray = [NSMutableArray arrayWithArray:array];
+    [self.tableView reloadData];
+    NSLog(@"view will appear");
+}
+
+
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath{
+    return YES;
+}
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
+    return 1;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    NSLog(@"numbers of rows = %d", bookArray.count);
+    return bookArray.count;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    static NSString *cellIdentifier = @"MyCell";
+    Book *book = bookArray[indexPath.row];
+    
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    if(!cell){
+        cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+    }
+    
+    
+    cell.textLabel.text = book.title;
+    cell.accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
+    
+    
+    return cell;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+    return 50;
+}
+
+- (NSString*)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
+    return [NSString stringWithFormat:@"This is BOOK LIST!!!!!"];
+}
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{
+    if(editingStyle == UITableViewCellEditingStyleDelete){
+        if(indexPath.row < bookArray.count){
+            
+            //tableview上面的內容清除
+            [bookArray removeObjectAtIndex:indexPath.row];
+            [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationLeft];
+            
+            
+            Book *book = bookArray[indexPath.row];
+            [book MR_deleteEntity];
+            [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreAndWait];
+            
+            
+            [self.tableView reloadData];
+        }
+    }
+}
+
+- (void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath{
+    Book *book = bookArray[indexPath.row];
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:[NSString stringWithFormat:@"Author:%@", book.author] message:nil delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+    
+    [alert show];
 }
 
 @end

@@ -7,6 +7,7 @@
 //
 
 #import "ScanViewController.h"
+#import <MagicalRecord/MagicalRecord.h>
 #import <MTBBarcodeScanner.h>
 #import "BookParser.h"
 #import "BookViewController.h"
@@ -76,6 +77,7 @@
 
 - (void)onRequestBookSucess:(Book*)book
 {
+    NSLog(@"request book success");
     self.textView.text = [NSString stringWithFormat:@"%@", book];
     BookViewController* vc = [self.storyboard instantiateViewControllerWithIdentifier:@"BookViewController"];
     [vc setBook:book];
