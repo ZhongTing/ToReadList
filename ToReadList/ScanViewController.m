@@ -76,9 +76,9 @@
     NSLog(@"request book success");
     self.textView.text = [NSString stringWithFormat:@"%@", book];
     
-    Book *saveBook = [Book MR_createEntity];
-    saveBook = book;
+    book = [Book MR_createEntity];
     [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreAndWait];
+    
 }
 
 #pragma mark - alertview delegate
