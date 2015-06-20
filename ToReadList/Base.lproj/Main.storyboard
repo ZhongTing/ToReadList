@@ -214,7 +214,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="T1s-p1-jYr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1430" y="360"/>
+            <point key="canvasLocation" x="1348" y="28"/>
         </scene>
         <!--Scan-->
         <scene sceneID="wg7-f3-ORb">
@@ -240,7 +240,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" tag="1" title="Scan" image="second" id="cPa-gy-q4n" userLabel="Scan"/>
+                    <navigationItem key="navigationItem" id="0x8-va-vIk"/>
                     <connections>
                         <outlet property="imageView" destination="8LK-73-bah" id="jdz-Q0-o0L"/>
                         <outlet property="textView" destination="IA7-3k-GjW" id="hDF-4B-LBr"/>
@@ -248,7 +248,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Nw-L8-lE0" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="400" y="340.80000000000001"/>
+            <point key="canvasLocation" x="932" y="340"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="yl2-sM-qoP">
@@ -262,12 +262,31 @@
                     </tabBar>
                     <connections>
                         <segue destination="9pv-A4-QxB" kind="relationship" relationship="viewControllers" id="u7Y-xg-7CH"/>
-                        <segue destination="8rJ-Kc-sve" kind="relationship" relationship="viewControllers" id="lzU-1b-eKA"/>
+                        <segue destination="M74-oj-Jbo" kind="relationship" relationship="viewControllers" id="lzU-1b-eKA"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HuB-VB-40B" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="0.0" y="0.0"/>
+        </scene>
+        <!--Scan-->
+        <scene sceneID="a3e-8c-Ozs">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="M74-oj-Jbo" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" tag="1" title="Scan" image="second" id="cPa-gy-q4n" userLabel="Scan"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="x33-l0-NL0">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="8rJ-Kc-sve" kind="relationship" relationship="rootViewController" id="O4R-91-Sel"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="m3y-zv-KX4" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="400" y="340"/>
         </scene>
     </scenes>
     <resources>

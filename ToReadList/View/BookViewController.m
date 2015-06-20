@@ -7,6 +7,7 @@
 //
 
 #import "BookViewController.h"
+#import <UIImageView+AFNetworking.h>
 
 @interface BookViewController ()
 
@@ -46,7 +47,7 @@
 
 - (void)initWithBook:(Book*)book
 {
-    NSLog(@"%@", book);
+    [self setBook:book];
     self.titleLabel.text = _book.title;
     self.subTitleLabel.text = _book.subtitle;
     self.publisherLabel.text = _book.publisher;
@@ -56,6 +57,7 @@
     self.gradeLabel.text = _book.averageRating;
     self.voteCountLabel.text = _book.ratingsCount;
     self.descriptionLabel.text = _book.desc;
+    [self.imageView setImageWithURL:[NSURL URLWithString:_book.coverUrl] placeholderImage:[UIImage imageNamed:@"default_cover"]];
 }
 
 /*

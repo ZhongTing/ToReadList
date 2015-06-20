@@ -81,7 +81,8 @@
     self.textView.text = [NSString stringWithFormat:@"%@", book];
     BookViewController* vc = [self.storyboard instantiateViewControllerWithIdentifier:@"BookViewController"];
     [vc setBook:book];
-    [self presentViewController:vc animated:YES completion:nil];
+    [self.navigationController pushViewController:vc animated:true];
+    //    [self presentViewController:vc animated:YES completion:nil];
 }
 
 #pragma mark - alertview delegate

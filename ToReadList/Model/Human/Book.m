@@ -24,7 +24,8 @@
     book.pageCount = [self stringWithDefaultValue:[data[@"pageCount"] stringValue] defaultValue:noData];
     book.ratingsCount = [self stringWithDefaultValue:[data[@"ratingsCount"] stringValue] defaultValue:noData];
     book.averageRating = [self stringWithDefaultValue:[data[@"averageRating"] stringValue] defaultValue:noData];
-    book.coverUrl = [self stringWithDefaultValue:data[@"imageLinks"][@"thumbnail"] defaultValue:noData];
+    NSLog(@"%@", data[@"imageLinks"]);
+    book.coverUrl = [self stringWithDefaultValue:data[@"imageLinks"][@"thumbnail"] defaultValue:@""];
     book.timestamp = [NSDate date];
 
     [book setISBN:data[@"industryIdentifiers"]];

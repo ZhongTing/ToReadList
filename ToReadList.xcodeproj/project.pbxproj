@@ -13,9 +13,9 @@
 		6D8512AD1B2DBD320074C998 /* FirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D8512AC1B2DBD320074C998 /* FirstViewController.m */; };
 		6D8512B01B2DBD320074C998 /* ScanViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D8512AF1B2DBD320074C998 /* ScanViewController.m */; };
 		6D8512B31B2DBD320074C998 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6D8512B11B2DBD320074C998 /* Main.storyboard */; };
-		6D8512B51B2DBD320074C998 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6D8512B41B2DBD320074C998 /* Images.xcassets */; };
 		6D8512B81B2DBD320074C998 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6D8512B61B2DBD320074C998 /* LaunchScreen.xib */; };
 		6D8512C41B2DBD320074C998 /* ToReadListTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D8512C31B2DBD320074C998 /* ToReadListTests.m */; };
+		6DB958781B3611C200435A88 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6DB958771B3611C200435A88 /* Images.xcassets */; };
 		6DC04B591B2EEFD300C3FB71 /* BookParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DC04B501B2EEFD300C3FB71 /* BookParser.m */; };
 		6DC04B5A1B2EEFD300C3FB71 /* Book.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DC04B531B2EEFD300C3FB71 /* Book.m */; };
 		6DC04B5B1B2EEFD300C3FB71 /* _Book.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DC04B561B2EEFD300C3FB71 /* _Book.m */; };
@@ -49,11 +49,11 @@
 		6D8512AE1B2DBD320074C998 /* ScanViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ScanViewController.h; sourceTree = "<group>"; };
 		6D8512AF1B2DBD320074C998 /* ScanViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ScanViewController.m; sourceTree = "<group>"; };
 		6D8512B21B2DBD320074C998 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		6D8512B41B2DBD320074C998 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		6D8512B71B2DBD320074C998 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		6D8512BD1B2DBD320074C998 /* ToReadListTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ToReadListTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6D8512C21B2DBD320074C998 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6D8512C31B2DBD320074C998 /* ToReadListTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ToReadListTests.m; sourceTree = "<group>"; };
+		6DB958771B3611C200435A88 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		6DC04B4F1B2EEFD300C3FB71 /* BookParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BookParser.h; sourceTree = "<group>"; };
 		6DC04B501B2EEFD300C3FB71 /* BookParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BookParser.m; sourceTree = "<group>"; };
 		6DC04B521B2EEFD300C3FB71 /* Book.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Book.h; sourceTree = "<group>"; };
@@ -128,10 +128,10 @@
 			children = (
 				6DC04B4E1B2EEFD300C3FB71 /* Model */,
 				6D5D34AD1B314219003144DD /* View */,
+				6DB958771B3611C200435A88 /* Images.xcassets */,
 				6D8512A81B2DBD320074C998 /* AppDelegate.h */,
 				6D8512A91B2DBD320074C998 /* AppDelegate.m */,
 				6D8512B11B2DBD320074C998 /* Main.storyboard */,
-				6D8512B41B2DBD320074C998 /* Images.xcassets */,
 				6D8512B61B2DBD320074C998 /* LaunchScreen.xib */,
 				6D8512A41B2DBD320074C998 /* Supporting Files */,
 			);
@@ -285,9 +285,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6DB958781B3611C200435A88 /* Images.xcassets in Resources */,
 				6D8512B31B2DBD320074C998 /* Main.storyboard in Resources */,
 				6D8512B81B2DBD320074C998 /* LaunchScreen.xib in Resources */,
-				6D8512B51B2DBD320074C998 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
