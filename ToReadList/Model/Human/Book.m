@@ -37,11 +37,12 @@
 {
     Book* book;
     for (NSDictionary* isbn in data) {
-        if ([isbn[@"identifier"] length] == 13) {
-            book = [Book MR_findFirstByAttribute:@"isbn13" withValue:data inContext:[NSManagedObjectContext MR_defaultContext]];
+        NSString* isbnString = isbn[@"identifier"];
+        if ([isbnString length] == 13) {
+            book = [Book MR_findFirstByAttribute:@"isbn13" withValue:isbnString inContext:[NSManagedObjectContext MR_defaultContext]];
         }
         else if ([isbn[@"identifier"] length] == 10) {
-            book = [Book MR_findFirstByAttribute:@"isbn10" withValue:data inContext:[NSManagedObjectContext MR_defaultContext]];
+            book = [Book MR_findFirstByAttribute:@"isbn10" withValue:isbnString inContext:[NSManagedObjectContext MR_defaultContext]];
         }
         if (book)
             return book;
