@@ -45,17 +45,6 @@ const struct BookAttributes BookAttributes = {
 + (NSSet*)keyPathsForValuesAffectingValueForKey:(NSString*)key {
 	NSSet *keyPaths = [super keyPathsForValuesAffectingValueForKey:key];
 
-	if ([key isEqualToString:@"pageCountValue"]) {
-		NSSet *affectingKey = [NSSet setWithObject:@"pageCount"];
-		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
-		return keyPaths;
-	}
-	if ([key isEqualToString:@"ratingsCountValue"]) {
-		NSSet *affectingKey = [NSSet setWithObject:@"ratingsCount"];
-		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
-		return keyPaths;
-	}
-
 	return keyPaths;
 }
 
@@ -73,47 +62,11 @@ const struct BookAttributes BookAttributes = {
 
 @dynamic pageCount;
 
-- (int64_t)pageCountValue {
-	NSNumber *result = [self pageCount];
-	return [result longLongValue];
-}
-
-- (void)setPageCountValue:(int64_t)value_ {
-	[self setPageCount:[NSNumber numberWithLongLong:value_]];
-}
-
-- (int64_t)primitivePageCountValue {
-	NSNumber *result = [self primitivePageCount];
-	return [result longLongValue];
-}
-
-- (void)setPrimitivePageCountValue:(int64_t)value_ {
-	[self setPrimitivePageCount:[NSNumber numberWithLongLong:value_]];
-}
-
 @dynamic publishDate;
 
 @dynamic publisher;
 
 @dynamic ratingsCount;
-
-- (int64_t)ratingsCountValue {
-	NSNumber *result = [self ratingsCount];
-	return [result longLongValue];
-}
-
-- (void)setRatingsCountValue:(int64_t)value_ {
-	[self setRatingsCount:[NSNumber numberWithLongLong:value_]];
-}
-
-- (int64_t)primitiveRatingsCountValue {
-	NSNumber *result = [self primitiveRatingsCount];
-	return [result longLongValue];
-}
-
-- (void)setPrimitiveRatingsCountValue:(int64_t)value_ {
-	[self setPrimitiveRatingsCount:[NSNumber numberWithLongLong:value_]];
-}
 
 @dynamic subtitle;
 

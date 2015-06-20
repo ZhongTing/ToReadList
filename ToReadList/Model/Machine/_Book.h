@@ -52,11 +52,7 @@ extern const struct BookAttributes {
 
 //- (BOOL)validateIsbn13:(id*)value_ error:(NSError**)error_;
 
-@property (nonatomic, strong) NSNumber* pageCount;
-
-@property (atomic) int64_t pageCountValue;
-- (int64_t)pageCountValue;
-- (void)setPageCountValue:(int64_t)value_;
+@property (nonatomic, strong) NSString* pageCount;
 
 //- (BOOL)validatePageCount:(id*)value_ error:(NSError**)error_;
 
@@ -68,11 +64,7 @@ extern const struct BookAttributes {
 
 //- (BOOL)validatePublisher:(id*)value_ error:(NSError**)error_;
 
-@property (nonatomic, strong) NSNumber* ratingsCount;
-
-@property (atomic) int64_t ratingsCountValue;
-- (int64_t)ratingsCountValue;
-- (void)setRatingsCountValue:(int64_t)value_;
+@property (nonatomic, strong) NSString* ratingsCount;
 
 //- (BOOL)validateRatingsCount:(id*)value_ error:(NSError**)error_;
 
@@ -110,11 +102,8 @@ extern const struct BookAttributes {
 - (NSString*)primitiveIsbn13;
 - (void)setPrimitiveIsbn13:(NSString*)value;
 
-- (NSNumber*)primitivePageCount;
-- (void)setPrimitivePageCount:(NSNumber*)value;
-
-- (int64_t)primitivePageCountValue;
-- (void)setPrimitivePageCountValue:(int64_t)value_;
+- (NSString*)primitivePageCount;
+- (void)setPrimitivePageCount:(NSString*)value;
 
 - (NSString*)primitivePublishDate;
 - (void)setPrimitivePublishDate:(NSString*)value;
@@ -122,11 +111,8 @@ extern const struct BookAttributes {
 - (NSString*)primitivePublisher;
 - (void)setPrimitivePublisher:(NSString*)value;
 
-- (NSNumber*)primitiveRatingsCount;
-- (void)setPrimitiveRatingsCount:(NSNumber*)value;
-
-- (int64_t)primitiveRatingsCountValue;
-- (void)setPrimitiveRatingsCountValue:(int64_t)value_;
+- (NSString*)primitiveRatingsCount;
+- (void)setPrimitiveRatingsCount:(NSString*)value;
 
 - (NSString*)primitiveSubtitle;
 - (void)setPrimitiveSubtitle:(NSString*)value;

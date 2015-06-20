@@ -9,6 +9,7 @@
 #import "ScanViewController.h"
 #import <MTBBarcodeScanner.h>
 #import "BookParser.h"
+#import "BookViewController.h"
 
 @interface ScanViewController ()
 @property (weak, nonatomic) IBOutlet UIImageView* imageView;
@@ -46,7 +47,10 @@
 #pragma mark - scan
 - (void)startScan
 {
-    [parser requestBookInfoWithISBN:nil success:nil];
+    //    [parser requestBookInfoWithISBN:nil
+    //                            success:^(Book* book) {
+    //                                [self onRequestBookSucess:book];
+    //                            }];
     [MTBBarcodeScanner requestCameraPermissionWithSuccess:^(BOOL success) {
         if (success) {
             [self.scanner startScanningWithResultBlock:^(NSArray* codes) {
@@ -73,6 +77,9 @@
 - (void)onRequestBookSucess:(Book*)book
 {
     self.textView.text = [NSString stringWithFormat:@"%@", book];
+    BookViewController* vc = [self.storyboard instantiateViewControllerWithIdentifier:@"BookViewController"];
+    [vc setBook:book];
+    [self presentViewController:vc animated:YES completion:nil];
 }
 
 #pragma mark - alertview delegate

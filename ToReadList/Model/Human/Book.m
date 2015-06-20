@@ -12,23 +12,24 @@
 + (instancetype)initWithDataObject:(NSDictionary*)data
 {
     Book* book = [self findFromCachedWith:data[@"industryIdentifiers"]];
+    NSString* noData = @"無資料";
     if (book == nil) {
         book = [Book MR_createEntity];
     }
     book.title = data[@"title"];
     book.subtitle = data[@"subtitle"];
-    book.publisher = data[@"publisher"];
-    book.publishDate = data[@"publishedDate"];
-    book.desc = data[@"description"];
-    book.pageCountValue = [data[@"pageCount"] longValue];
-    book.ratingsCountValue = [data[@"ratingsCount"] longValue];
-    book.averageRating = data[@"averageRating"];
-    book.coverUrl = data[@"imageLinks"][@"thumbnail"];
+    book.publisher = [self stringWithDefaultValue:data[@"publisher"] defaultValue:noData];
+    book.publishDate = [self stringWithDefaultValue:data[@"publishedDate"] defaultValue:noData];
+    book.desc = [self stringWithDefaultValue:data[@"description"] defaultValue:noData];
+    book.pageCount = [self stringWithDefaultValue:[data[@"pageCount"] stringValue] defaultValue:noData];
+    book.ratingsCount = [self stringWithDefaultValue:[data[@"ratingsCount"] stringValue] defaultValue:noData];
+    book.averageRating = [self stringWithDefaultValue:[data[@"averageRating"] stringValue] defaultValue:noData];
+    book.coverUrl = [self stringWithDefaultValue:data[@"imageLinks"][@"thumbnail"] defaultValue:noData];
     book.timestamp = [NSDate date];
 
     [book setISBN:data[@"industryIdentifiers"]];
     [book setAuthorWithArray:data[@"authors"]];
-    //    [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreAndWait];
+    [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreAndWait];
     return book;
 }
 
@@ -46,6 +47,11 @@
             return book;
     }
     return book;
+}
+
++ (NSString*)stringWithDefaultValue:(NSString*)string defaultValue:(NSString*)defaultValue
+{
+    return string != nil && string.length != 0 ? string : defaultValue;
 }
 
 - (void)setISBN:(NSDictionary*)data
