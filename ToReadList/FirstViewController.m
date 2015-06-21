@@ -8,6 +8,8 @@
 
 #import "FirstViewController.h"
 #import <MagicalRecord/MagicalRecord.h>
+#import "BookViewController.h"
+#import "BookTableViewCell.h"
 #import "Book.h"
 
 @interface FirstViewController () {
@@ -22,7 +24,6 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
-
     bookArray = [NSMutableArray array];
 }
 
@@ -36,13 +37,12 @@
 {
     NSArray* array = [Book MR_findAll];
 
-    NSLog(@"array count = %d", array.count);
-
     bookArray = [NSMutableArray arrayWithArray:array];
     [self.tableView reloadData];
     NSLog(@"view will appear");
 }
 
+#pragma mark - tableview
 - (BOOL)tableView:(UITableView*)tableView canEditRowAtIndexPath:(NSIndexPath*)indexPath
 {
     return YES;
@@ -55,34 +55,22 @@
 
 - (NSInteger)tableView:(UITableView*)tableView numberOfRowsInSection:(NSInteger)section
 {
-    NSLog(@"numbers of rows = %d", bookArray.count);
     return bookArray.count;
 }
 
 - (UITableViewCell*)tableView:(UITableView*)tableView cellForRowAtIndexPath:(NSIndexPath*)indexPath
 {
-    static NSString* cellIdentifier = @"MyCell";
+    static NSString* identifier = @"BookTableViewCell";
     Book* book = bookArray[indexPath.row];
-
-    UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-    if (!cell) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
-    }
-
-    cell.textLabel.text = book.title;
-    cell.accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
-
+    BookTableViewCell* cell = [self.tableView dequeueReusableCellWithIdentifier:identifier forIndexPath:indexPath];
+    [cell initWithBook:book];
+    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     return cell;
-}
-
-- (CGFloat)tableView:(UITableView*)tableView heightForHeaderInSection:(NSInteger)section
-{
-    return 50;
 }
 
 - (NSString*)tableView:(UITableView*)tableView titleForHeaderInSection:(NSInteger)section
 {
-    return [NSString stringWithFormat:@"This is BOOK LIST!!!!!"];
+    return [NSString stringWithFormat:@"TO READ"];
 }
 
 - (void)tableView:(UITableView*)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath*)indexPath
@@ -99,13 +87,11 @@
         }
     }
 }
-
-- (void)tableView:(UITableView*)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath*)indexPath
+- (void)tableView:(UITableView*)tableView didSelectRowAtIndexPath:(NSIndexPath*)indexPath
 {
-    Book* book = bookArray[indexPath.row];
-    UIAlertView* alert = [[UIAlertView alloc] initWithTitle:[NSString stringWithFormat:@"Author:%@", book.author] message:nil delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-
-    [alert show];
+    BookViewController* vc = [self.storyboard instantiateViewControllerWithIdentifier:@"BookViewController"];
+    [vc setBook:bookArray[indexPath.row]];
+    [self.navigationController pushViewController:vc animated:true];
 }
 
 @end

@@ -32,6 +32,7 @@
 {
     [super viewDidLoad];
     [self initWithBook:_book];
+    self.navigationItem.title = @"Book Information";
 }
 
 - (void)didReceiveMemoryWarning

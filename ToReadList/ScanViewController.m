@@ -14,7 +14,6 @@
 
 @interface ScanViewController ()
 @property (weak, nonatomic) IBOutlet UIImageView* imageView;
-@property (weak, nonatomic) IBOutlet UITextView* textView;
 @property (strong, nonatomic) MTBBarcodeScanner* scanner;
 @end
 
@@ -78,7 +77,6 @@
 - (void)onRequestBookSucess:(Book*)book
 {
     NSLog(@"request book success");
-    self.textView.text = [NSString stringWithFormat:@"%@", book];
     BookViewController* vc = [self.storyboard instantiateViewControllerWithIdentifier:@"BookViewController"];
     [vc setBook:book];
     [self.navigationController pushViewController:vc animated:true];

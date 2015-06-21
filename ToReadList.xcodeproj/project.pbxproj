@@ -16,6 +16,7 @@
 		6D8512B81B2DBD320074C998 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6D8512B61B2DBD320074C998 /* LaunchScreen.xib */; };
 		6D8512C41B2DBD320074C998 /* ToReadListTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D8512C31B2DBD320074C998 /* ToReadListTests.m */; };
 		6DB958781B3611C200435A88 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6DB958771B3611C200435A88 /* Images.xcassets */; };
+		6DB9587B1B3712B000435A88 /* BookTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DB9587A1B3712B000435A88 /* BookTableViewCell.m */; };
 		6DC04B591B2EEFD300C3FB71 /* BookParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DC04B501B2EEFD300C3FB71 /* BookParser.m */; };
 		6DC04B5A1B2EEFD300C3FB71 /* Book.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DC04B531B2EEFD300C3FB71 /* Book.m */; };
 		6DC04B5B1B2EEFD300C3FB71 /* _Book.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DC04B561B2EEFD300C3FB71 /* _Book.m */; };
@@ -54,6 +55,8 @@
 		6D8512C21B2DBD320074C998 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6D8512C31B2DBD320074C998 /* ToReadListTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ToReadListTests.m; sourceTree = "<group>"; };
 		6DB958771B3611C200435A88 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		6DB958791B3712B000435A88 /* BookTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BookTableViewCell.h; path = View/BookTableViewCell.h; sourceTree = "<group>"; };
+		6DB9587A1B3712B000435A88 /* BookTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BookTableViewCell.m; path = View/BookTableViewCell.m; sourceTree = "<group>"; };
 		6DC04B4F1B2EEFD300C3FB71 /* BookParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BookParser.h; sourceTree = "<group>"; };
 		6DC04B501B2EEFD300C3FB71 /* BookParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BookParser.m; sourceTree = "<group>"; };
 		6DC04B521B2EEFD300C3FB71 /* Book.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Book.h; sourceTree = "<group>"; };
@@ -99,6 +102,8 @@
 				6D8512AF1B2DBD320074C998 /* ScanViewController.m */,
 				6D5D34AE1B31429B003144DD /* BookViewController.h */,
 				6D5D34AF1B31429B003144DD /* BookViewController.m */,
+				6DB958791B3712B000435A88 /* BookTableViewCell.h */,
+				6DB9587A1B3712B000435A88 /* BookTableViewCell.m */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -343,6 +348,7 @@
 				6DC04B591B2EEFD300C3FB71 /* BookParser.m in Sources */,
 				6DC04B5B1B2EEFD300C3FB71 /* _Book.m in Sources */,
 				6D8512AA1B2DBD320074C998 /* AppDelegate.m in Sources */,
+				6DB9587B1B3712B000435A88 /* BookTableViewCell.m in Sources */,
 				6DC04B5A1B2EEFD300C3FB71 /* Book.m in Sources */,
 				6D8512AD1B2DBD320074C998 /* FirstViewController.m in Sources */,
 				6DC04B5C1B2EEFD300C3FB71 /* Model.xcdatamodeld in Sources */,
