@@ -13,7 +13,9 @@
 #import "Book.h"
 
 @interface FirstViewController () {
-    NSMutableArray* bookArray;
+    NSMutableArray* unReadBookArray;
+    NSMutableArray* hasReadBookArray;
+    NSArray* bookArray;
 }
 
 @end
@@ -24,7 +26,6 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
-    bookArray = [NSMutableArray array];
 }
 
 - (void)didReceiveMemoryWarning
@@ -35,11 +36,20 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
-    NSArray* array = [Book MR_findAll];
-
-    bookArray = [NSMutableArray arrayWithArray:array];
-    [self.tableView reloadData];
     NSLog(@"view will appear");
+    //init data
+    unReadBookArray = [NSMutableArray arrayWithArray:[Book MR_findByAttribute:@"done" withValue:@"0" inContext:[NSManagedObjectContext MR_defaultContext]]];
+    hasReadBookArray = [NSMutableArray arrayWithArray:[Book MR_findByAttribute:@"done" withValue:@"1" inContext:[NSManagedObjectContext MR_defaultContext]]];
+    [self.tableView reloadData];
+    bookArray = @[ unReadBookArray, hasReadBookArray ];
+    [self.tableView reloadData];
+    //if tableview is empty show the add book hint
+    [self checkBookListIsEmpty];
+}
+
+- (void)checkBookListIsEmpty
+{
+    self.tableView.alpha = unReadBookArray.count + hasReadBookArray.count == 0 ? 0 : 1;
 }
 
 #pragma mark - tableview
@@ -50,18 +60,18 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView*)tableView
 {
-    return 1;
+    return bookArray.count;
 }
 
 - (NSInteger)tableView:(UITableView*)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return bookArray.count;
+    return [bookArray[section] count];
 }
 
 - (UITableViewCell*)tableView:(UITableView*)tableView cellForRowAtIndexPath:(NSIndexPath*)indexPath
 {
     static NSString* identifier = @"BookTableViewCell";
-    Book* book = bookArray[indexPath.row];
+    Book* book = bookArray[indexPath.section][indexPath.row];
     BookTableViewCell* cell = [self.tableView dequeueReusableCellWithIdentifier:identifier forIndexPath:indexPath];
     [cell initWithBook:book];
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
@@ -70,27 +80,56 @@
 
 - (NSString*)tableView:(UITableView*)tableView titleForHeaderInSection:(NSInteger)section
 {
-    return [NSString stringWithFormat:@"TO READ"];
+    return section == 0 ? @"TO READ" : @"HAS READ";
 }
 
 - (void)tableView:(UITableView*)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath*)indexPath
 {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        if (indexPath.row < bookArray.count) {
-
-            //tableview上面的內容清除
-            Book* book = bookArray[indexPath.row];
-            [bookArray removeObject:book];
-            [book MR_deleteEntity];
-            [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreAndWait];
-            [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationLeft];
-        }
-    }
+    //override with empty to show editactions;
 }
+
+- (NSArray*)tableView:(UITableView*)tableView editActionsForRowAtIndexPath:(NSIndexPath*)indexPath
+{
+    UITableViewRowAction* deleteRowAction = [UITableViewRowAction
+        rowActionWithStyle:UITableViewRowActionStyleDestructive
+                     title:@"Delete"
+                   handler:^(UITableViewRowAction* action, NSIndexPath* indexPath) {
+
+                       Book* book = bookArray[indexPath.section][indexPath.row];
+                       [bookArray[indexPath.section] removeObject:book];
+                       [book MR_deleteEntity];
+                       [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreAndWait];
+                       [tableView deleteRowsAtIndexPaths:@[ indexPath ] withRowAnimation:UITableViewRowAnimationAutomatic];
+                       [self checkBookListIsEmpty];
+                   }];
+    UITableViewRowAction* completeAction = [UITableViewRowAction
+        rowActionWithStyle:UITableViewRowActionStyleNormal
+                     title:indexPath.section == 0 ? @"Done" : @"UnRead"
+                   handler:^(UITableViewRowAction* action, NSIndexPath* indexPath) {
+                       unsigned long anotherSection = (indexPath.section + 1) % bookArray.count;
+                       Book* book = bookArray[indexPath.section][indexPath.row];
+                       [bookArray[indexPath.section] removeObject:book];
+                       [bookArray[anotherSection] addObject:book];
+                       book.doneValue = !book.doneValue;
+                       [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreAndWait];
+
+                       //begin animation
+                       [self.tableView beginUpdates];
+                       NSIndexPath* insertIndexPath = [NSIndexPath indexPathForRow:[bookArray[anotherSection] count] - 1 inSection:anotherSection];
+                       [tableView insertRowsAtIndexPaths:@[ insertIndexPath ] withRowAnimation:UITableViewRowAnimationAutomatic];
+                       [tableView deleteRowsAtIndexPaths:@[ indexPath ] withRowAnimation:UITableViewRowAnimationAutomatic];
+
+                       [self.tableView endUpdates];
+                   }];
+    completeAction.backgroundEffect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleDark];
+
+    return @[ deleteRowAction, completeAction ];
+}
+
 - (void)tableView:(UITableView*)tableView didSelectRowAtIndexPath:(NSIndexPath*)indexPath
 {
     BookViewController* vc = [self.storyboard instantiateViewControllerWithIdentifier:@"BookViewController"];
-    [vc setBook:bookArray[indexPath.row]];
+    [vc setBook:bookArray[indexPath.section][indexPath.row]];
     [self.navigationController pushViewController:vc animated:true];
 }
 

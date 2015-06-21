@@ -8,6 +8,7 @@ const struct BookAttributes BookAttributes = {
 	.averageRating = @"averageRating",
 	.coverUrl = @"coverUrl",
 	.desc = @"desc",
+	.done = @"done",
 	.isbn10 = @"isbn10",
 	.isbn13 = @"isbn13",
 	.pageCount = @"pageCount",
@@ -45,6 +46,12 @@ const struct BookAttributes BookAttributes = {
 + (NSSet*)keyPathsForValuesAffectingValueForKey:(NSString*)key {
 	NSSet *keyPaths = [super keyPathsForValuesAffectingValueForKey:key];
 
+	if ([key isEqualToString:@"doneValue"]) {
+		NSSet *affectingKey = [NSSet setWithObject:@"done"];
+		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
+		return keyPaths;
+	}
+
 	return keyPaths;
 }
 
@@ -55,6 +62,26 @@ const struct BookAttributes BookAttributes = {
 @dynamic coverUrl;
 
 @dynamic desc;
+
+@dynamic done;
+
+- (BOOL)doneValue {
+	NSNumber *result = [self done];
+	return [result boolValue];
+}
+
+- (void)setDoneValue:(BOOL)value_ {
+	[self setDone:[NSNumber numberWithBool:value_]];
+}
+
+- (BOOL)primitiveDoneValue {
+	NSNumber *result = [self primitiveDone];
+	return [result boolValue];
+}
+
+- (void)setPrimitiveDoneValue:(BOOL)value_ {
+	[self setPrimitiveDone:[NSNumber numberWithBool:value_]];
+}
 
 @dynamic isbn10;
 

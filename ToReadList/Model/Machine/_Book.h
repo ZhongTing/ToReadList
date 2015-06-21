@@ -8,6 +8,7 @@ extern const struct BookAttributes {
 	__unsafe_unretained NSString *averageRating;
 	__unsafe_unretained NSString *coverUrl;
 	__unsafe_unretained NSString *desc;
+	__unsafe_unretained NSString *done;
 	__unsafe_unretained NSString *isbn10;
 	__unsafe_unretained NSString *isbn13;
 	__unsafe_unretained NSString *pageCount;
@@ -43,6 +44,14 @@ extern const struct BookAttributes {
 @property (nonatomic, strong) NSString* desc;
 
 //- (BOOL)validateDesc:(id*)value_ error:(NSError**)error_;
+
+@property (nonatomic, strong) NSNumber* done;
+
+@property (atomic) BOOL doneValue;
+- (BOOL)doneValue;
+- (void)setDoneValue:(BOOL)value_;
+
+//- (BOOL)validateDone:(id*)value_ error:(NSError**)error_;
 
 @property (nonatomic, strong) NSString* isbn10;
 
@@ -95,6 +104,12 @@ extern const struct BookAttributes {
 
 - (NSString*)primitiveDesc;
 - (void)setPrimitiveDesc:(NSString*)value;
+
+- (NSNumber*)primitiveDone;
+- (void)setPrimitiveDone:(NSNumber*)value;
+
+- (BOOL)primitiveDoneValue;
+- (void)setPrimitiveDoneValue:(BOOL)value_;
 
 - (NSString*)primitiveIsbn10;
 - (void)setPrimitiveIsbn10:(NSString*)value;
