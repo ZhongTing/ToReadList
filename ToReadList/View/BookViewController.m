@@ -7,9 +7,12 @@
 //
 
 #import "BookViewController.h"
+#import <MagicalRecord.h>
 #import <UIImageView+AFNetworking.h>
 
 @interface BookViewController ()
+@property (weak, nonatomic) IBOutlet UILabel* isbn10Label;
+@property (weak, nonatomic) IBOutlet UILabel* isbn13Label;
 
 @property (weak, nonatomic) IBOutlet UIImageView* imageView;
 @property (weak, nonatomic) IBOutlet UILabel* titleLabel;
@@ -46,9 +49,18 @@
     _book = book;
 }
 
+- (IBAction) delete:(id)sender
+{
+    [_book MR_deleteEntity];
+    [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreAndWait];
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
 - (void)initWithBook:(Book*)book
 {
     [self setBook:book];
+    self.isbn10Label.text = _book.isbn10;
+    self.isbn13Label.text = _book.isbn13;
     self.titleLabel.text = _book.title;
     self.subTitleLabel.text = _book.subtitle;
     self.publisherLabel.text = _book.publisher;

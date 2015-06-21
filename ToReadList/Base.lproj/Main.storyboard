@@ -237,6 +237,32 @@
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="isbn10" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2tp-M4-Egx">
+                                        <rect key="frame" x="116" y="8" width="359" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="isbn13" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ENv-40-bTH">
+                                        <rect key="frame" x="116" y="27" width="359" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TsE-7B-Z4Y">
+                                        <rect key="frame" x="16" y="18" width="84" height="30"/>
+                                        <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <state key="normal" title="Delete">
+                                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="layer.cornerRadius" value="10"/>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="delete:" destination="zHO-eZ-5gh" eventType="touchUpInside" id="C1k-ZP-YDK"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
@@ -255,6 +281,8 @@
                         <outlet property="descriptionLabel" destination="PzQ-6a-t4T" id="KUr-hy-ydv"/>
                         <outlet property="gradeLabel" destination="yez-Je-POe" id="R2k-CZ-Qfv"/>
                         <outlet property="imageView" destination="8Zs-qz-1Ca" id="wLQ-bn-tM5"/>
+                        <outlet property="isbn10Label" destination="2tp-M4-Egx" id="A2o-Jt-vI0"/>
+                        <outlet property="isbn13Label" destination="ENv-40-bTH" id="4DL-ZY-5Qz"/>
                         <outlet property="pageCountLabel" destination="zG5-dW-J1z" id="FbG-3e-71t"/>
                         <outlet property="publishDataLabel" destination="Dmy-JX-6Wx" id="6kj-OB-uhG"/>
                         <outlet property="publisherLabel" destination="KBY-7v-xR4" id="fCu-Ce-tWb"/>
@@ -265,7 +293,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="T1s-p1-jYr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2621.25" y="66.549295774647888"/>
+            <point key="canvasLocation" x="2621" y="66"/>
         </scene>
         <!--Scan-->
         <scene sceneID="wg7-f3-ORb">
