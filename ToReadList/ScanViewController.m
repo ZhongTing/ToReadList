@@ -37,6 +37,7 @@
 - (void)viewDidDisappear:(BOOL)animated
 {
     [self.scanner stopScanning];
+    [MRProgressOverlayView dismissOverlayForView:self.navigationController.view animated:YES];
 }
 
 - (void)didReceiveMemoryWarning

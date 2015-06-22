@@ -24,8 +24,8 @@
 @property (weak, nonatomic) IBOutlet UILabel* voteCountLabel;
 @property (weak, nonatomic) IBOutlet UILabel* descriptionLabel;
 @property (weak, nonatomic) IBOutlet UILabel* authorLabel;
-@property (weak, nonatomic) IBOutlet UIView *contentBaseView;
-@property (strong, nonatomic) IBOutlet UIScrollView *scrollView;
+@property (weak, nonatomic) IBOutlet UIView* contentBaseView;
+@property (strong, nonatomic) IBOutlet UIScrollView* scrollView;
 
 @end
 
@@ -38,13 +38,12 @@
     [super viewDidLoad];
     [self initWithBook:_book];
     self.navigationItem.title = @"Book Information";
-    
 }
 
-- (void)viewDidAppear:(BOOL)animated{
+- (void)viewDidAppear:(BOOL)animated
+{
     [super viewDidAppear:animated];
-    self.scrollView.contentSize = self.contentBaseView.frame.size;
-    
+    self.scrollView.contentSize = CGSizeMake(self.descriptionLabel.frame.size.width, self.descriptionLabel.frame.size.height + self.descriptionLabel.frame.origin.y);
 }
 
 - (void)didReceiveMemoryWarning
