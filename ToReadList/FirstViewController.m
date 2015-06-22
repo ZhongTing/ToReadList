@@ -62,15 +62,16 @@ typedef enum {
 - (IBAction)filterValueChange:(id)sender
 {
     UISegmentedControl* segementControl = sender;
-    filter = segementControl.selectedSegmentIndex;
+    filter = (int)segementControl.selectedSegmentIndex;
     [self.tableView reloadData];
 }
 
-#pragma mark - tableview
-- (int)getFilterSection:(int)section
+- (int)getFilterSection:(NSInteger)section
 {
-    return filter == ALL ? section : filter - 1;
+    return filter == ALL ? (int)section : filter - 1;
 }
+
+#pragma mark - tableview
 
 - (BOOL)tableView:(UITableView*)tableView canEditRowAtIndexPath:(NSIndexPath*)indexPath
 {
@@ -158,7 +159,8 @@ typedef enum {
 - (void)tableView:(UITableView*)tableView didSelectRowAtIndexPath:(NSIndexPath*)indexPath
 {
     BookViewController* vc = [self.storyboard instantiateViewControllerWithIdentifier:@"BookViewController"];
-    [vc setBook:bookArray[indexPath.section][indexPath.row]];
+    int section = [self getFilterSection:indexPath.section];
+    [vc setBook:bookArray[section][indexPath.row]];
     [self.navigationController pushViewController:vc animated:true];
 }
 
