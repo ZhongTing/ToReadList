@@ -11,11 +11,17 @@
 #import "BookViewController.h"
 #import "BookTableViewCell.h"
 #import "Book.h"
+typedef enum {
+    ALL,
+    TOREAD,
+    HASREAD
+} FilterType;
 
 @interface FirstViewController () {
     NSMutableArray* unReadBookArray;
     NSMutableArray* hasReadBookArray;
     NSArray* bookArray;
+    FilterType filter;
 }
 
 @end
@@ -37,7 +43,7 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     NSLog(@"view will appear");
-    
+
     //init data
     unReadBookArray = [NSMutableArray arrayWithArray:[Book MR_findByAttribute:@"done" withValue:@"0" inContext:[NSManagedObjectContext MR_defaultContext]]];
     hasReadBookArray = [NSMutableArray arrayWithArray:[Book MR_findByAttribute:@"done" withValue:@"1" inContext:[NSManagedObjectContext MR_defaultContext]]];
@@ -53,7 +59,19 @@
     self.tableView.alpha = unReadBookArray.count + hasReadBookArray.count == 0 ? 0 : 1;
 }
 
+- (IBAction)filterValueChange:(id)sender
+{
+    UISegmentedControl* segementControl = sender;
+    filter = segementControl.selectedSegmentIndex;
+    [self.tableView reloadData];
+}
+
 #pragma mark - tableview
+- (int)getFilterSection:(int)section
+{
+    return filter == ALL ? section : filter - 1;
+}
+
 - (BOOL)tableView:(UITableView*)tableView canEditRowAtIndexPath:(NSIndexPath*)indexPath
 {
     return YES;
@@ -61,28 +79,34 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView*)tableView
 {
-    return bookArray.count;
+    return filter == ALL ? bookArray.count : 1;
 }
 
 - (NSInteger)tableView:(UITableView*)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [bookArray[section] count];
+    int index = [self getFilterSection:section];
+    return [bookArray[index] count];
 }
 
 - (UITableViewCell*)tableView:(UITableView*)tableView cellForRowAtIndexPath:(NSIndexPath*)indexPath
 {
     static NSString* identifier = @"BookTableViewCell";
-    Book* book = bookArray[indexPath.section][indexPath.row];
+    int section = [self getFilterSection:indexPath.section];
+    Book* book = bookArray[section][indexPath.row];
     BookTableViewCell* cell = [self.tableView dequeueReusableCellWithIdentifier:identifier forIndexPath:indexPath];
     [cell initWithBook:book];
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-    
+
     return cell;
 }
 
 - (NSString*)tableView:(UITableView*)tableView titleForHeaderInSection:(NSInteger)section
 {
-    return section == 0 ? @"TO READ" : @"HAS READ";
+    if (filter == ALL) {
+        return section == 0 ? @"TO READ" : @"HAS READ";
+    }
+    else
+        return filter == TOREAD ? @"TO READ" : @"HAS READ";
 }
 
 - (void)tableView:(UITableView*)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath*)indexPath
@@ -96,9 +120,9 @@
         rowActionWithStyle:UITableViewRowActionStyleDestructive
                      title:@"Delete"
                    handler:^(UITableViewRowAction* action, NSIndexPath* indexPath) {
-
-                       Book* book = bookArray[indexPath.section][indexPath.row];
-                       [bookArray[indexPath.section] removeObject:book];
+                       int section = [self getFilterSection:indexPath.section];
+                       Book* book = bookArray[section][indexPath.row];
+                       [bookArray[section] removeObject:book];
                        [book MR_deleteEntity];
                        [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreAndWait];
                        [tableView deleteRowsAtIndexPaths:@[ indexPath ] withRowAnimation:UITableViewRowAnimationAutomatic];
@@ -108,17 +132,20 @@
         rowActionWithStyle:UITableViewRowActionStyleNormal
                      title:indexPath.section == 0 ? @"Done" : @"UnRead"
                    handler:^(UITableViewRowAction* action, NSIndexPath* indexPath) {
-                       unsigned long anotherSection = (indexPath.section + 1) % bookArray.count;
-                       Book* book = bookArray[indexPath.section][indexPath.row];
-                       [bookArray[indexPath.section] removeObject:book];
+                       int section = [self getFilterSection:indexPath.section];
+                       unsigned long anotherSection = (section + 1) % bookArray.count;
+                       Book* book = bookArray[section][indexPath.row];
+                       [bookArray[section] removeObject:book];
                        [bookArray[anotherSection] addObject:book];
                        book.doneValue = !book.doneValue;
                        [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreAndWait];
 
                        //begin animation
                        [self.tableView beginUpdates];
-                       NSIndexPath* insertIndexPath = [NSIndexPath indexPathForRow:[bookArray[anotherSection] count] - 1 inSection:anotherSection];
-                       [tableView insertRowsAtIndexPaths:@[ insertIndexPath ] withRowAnimation:UITableViewRowAnimationAutomatic];
+                       if (filter == ALL) {
+                           NSIndexPath* insertIndexPath = [NSIndexPath indexPathForRow:[bookArray[anotherSection] count] - 1 inSection:anotherSection];
+                           [tableView insertRowsAtIndexPaths:@[ insertIndexPath ] withRowAnimation:UITableViewRowAnimationAutomatic];
+                       }
                        [tableView deleteRowsAtIndexPaths:@[ indexPath ] withRowAnimation:UITableViewRowAnimationAutomatic];
 
                        [self.tableView endUpdates];
@@ -135,9 +162,9 @@
     [self.navigationController pushViewController:vc animated:true];
 }
 
-- (IBAction)filterButton:(id)sender {
+- (IBAction)filterButton:(id)sender
+{
     NSLog(@"Filter Button is clicked!!!!!!");
-    
 }
 
 @end

@@ -29,8 +29,23 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="VlJ-2n-BbC">
+                                <rect key="frame" x="173" y="74" width="254" height="29"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="28" id="BsC-Uo-rVn"/>
+                                    <constraint firstAttribute="width" constant="254" id="JE9-6j-uYv"/>
+                                </constraints>
+                                <segments>
+                                    <segment title="All"/>
+                                    <segment title="ToRead"/>
+                                    <segment title="Has Read"/>
+                                </segments>
+                                <connections>
+                                    <action selector="filterValueChange:" destination="9pv-A4-QxB" eventType="valueChanged" id="rgm-Z3-Wux"/>
+                                </connections>
+                            </segmentedControl>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="80" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="5OU-OY-SPn">
-                                <rect key="frame" x="0.0" y="64" width="600" height="487"/>
+                                <rect key="frame" x="0.0" y="112" width="600" height="439"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" restorationIdentifier="tableviewcell" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="BookTableViewCell" rowHeight="80" id="M9k-Fv-JEK" customClass="BookTableViewCell">
@@ -99,13 +114,15 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="5OU-OY-SPn" secondAttribute="trailing" id="6Jc-qy-5LV"/>
+                            <constraint firstAttribute="centerX" secondItem="VlJ-2n-BbC" secondAttribute="centerX" id="8RJ-GU-LmI"/>
                             <constraint firstAttribute="centerY" secondItem="Exl-1W-k45" secondAttribute="centerY" id="9CJ-RM-QjR"/>
                             <constraint firstItem="YVa-m3-ygx" firstAttribute="top" secondItem="Exl-1W-k45" secondAttribute="bottom" constant="10" id="Hrr-b5-oa9"/>
+                            <constraint firstItem="VlJ-2n-BbC" firstAttribute="top" secondItem="lay-vx-8Gb" secondAttribute="bottom" constant="10" id="ZcQ-U9-gPo"/>
                             <constraint firstItem="5OU-OY-SPn" firstAttribute="leading" secondItem="tsR-hK-woN" secondAttribute="leading" id="fxo-8c-e1D"/>
                             <constraint firstItem="uvI-zK-vfT" firstAttribute="top" secondItem="5OU-OY-SPn" secondAttribute="bottom" id="ggM-zd-DyA"/>
                             <constraint firstAttribute="centerX" secondItem="Exl-1W-k45" secondAttribute="centerX" constant="-10" id="obh-02-d7z"/>
+                            <constraint firstItem="5OU-OY-SPn" firstAttribute="top" secondItem="VlJ-2n-BbC" secondAttribute="bottom" constant="10" id="q0u-AY-MTS"/>
                             <constraint firstAttribute="centerX" secondItem="YVa-m3-ygx" secondAttribute="centerX" id="qPj-uW-xJn"/>
-                            <constraint firstItem="5OU-OY-SPn" firstAttribute="top" secondItem="lay-vx-8Gb" secondAttribute="bottom" id="xXH-6L-oZY"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Reading List" id="hPp-HW-xfR"/>
@@ -115,7 +132,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W5J-7L-Pyd" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1747.5" y="-320.07042253521126"/>
+            <point key="canvasLocation" x="1747" y="-321"/>
         </scene>
         <!--Book-->
         <scene sceneID="iUD-88-Oz0">
