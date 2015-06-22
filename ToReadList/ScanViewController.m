@@ -11,6 +11,7 @@
 #import <MTBBarcodeScanner.h>
 #import "BookParser.h"
 #import "BookViewController.h"
+#import <MRProgress.h>
 
 @interface ScanViewController ()
 @property (weak, nonatomic) IBOutlet UIImageView* imageView;
@@ -47,10 +48,6 @@
 #pragma mark - scan
 - (void)startScan
 {
-    //    [parser requestBookInfoWithISBN:nil
-    //                            success:^(Book* book) {
-    //                                [self onRequestBookSucess:book];
-    //                            }];
     [MTBBarcodeScanner requestCameraPermissionWithSuccess:^(BOOL success) {
         if (success) {
             [self.scanner startScanningWithResultBlock:^(NSArray* codes) {
@@ -61,9 +58,11 @@
                     [alert show];
                 }
                 else {
+                    [MRProgressOverlayView showOverlayAddedTo:self.navigationController.view animated:YES];
                     [parser requestBookInfoWithISBN:code.stringValue
                                             success:^(Book* book) {
                                                 [self onRequestBookSucess:book];
+                                                [MRProgressOverlayView dismissOverlayForView:self.navigationController.view animated:YES];
                                             }];
                 }
             }];
@@ -77,10 +76,15 @@
 - (void)onRequestBookSucess:(Book*)book
 {
     NSLog(@"request book success");
-    BookViewController* vc = [self.storyboard instantiateViewControllerWithIdentifier:@"BookViewController"];
-    [vc setBook:book];
-    [self.navigationController pushViewController:vc animated:true];
-    //    [self presentViewController:vc animated:YES completion:nil];
+    if (book == nil) {
+        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"資料讀取有誤" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [alert show];
+    }
+    else {
+        BookViewController* vc = [self.storyboard instantiateViewControllerWithIdentifier:@"BookViewController"];
+        [vc setBook:book];
+        [self.navigationController pushViewController:vc animated:true];
+    }
 }
 
 #pragma mark - alertview delegate
