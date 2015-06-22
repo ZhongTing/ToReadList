@@ -454,7 +454,7 @@
         <scene sceneID="a3e-8c-Ozs">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="M74-oj-Jbo" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" tag="1" title="Scan" image="second" id="cPa-gy-q4n" userLabel="Scan"/>
+                    <tabBarItem key="tabBarItem" tag="1" title="Scan" image="scan" id="cPa-gy-q4n" userLabel="Scan"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="x33-l0-NL0">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -473,7 +473,7 @@
         <scene sceneID="rhZ-lT-IDh">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="MFh-nw-TbO" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="BookList" image="first" id="acW-dT-cKf"/>
+                    <tabBarItem key="tabBarItem" title="BookList" image="reading" id="acW-dT-cKf"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="f8o-U8-9ES">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -491,7 +491,7 @@
     </scenes>
     <resources>
         <image name="default_cover" width="156" height="206"/>
-        <image name="first" width="30" height="30"/>
-        <image name="second" width="30" height="30"/>
+        <image name="reading" width="25" height="25"/>
+        <image name="scan" width="25" height="25"/>
     </resources>
 </document>
