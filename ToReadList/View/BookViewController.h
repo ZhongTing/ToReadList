@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "Book.h"
 
-@interface BookViewController : UIViewController
+@interface BookViewController : UIViewController<UIScrollViewDelegate>
 
 - (void)setBook:(Book*)book;
 @end

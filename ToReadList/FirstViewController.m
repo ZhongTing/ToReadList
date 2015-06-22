@@ -37,6 +37,7 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     NSLog(@"view will appear");
+    
     //init data
     unReadBookArray = [NSMutableArray arrayWithArray:[Book MR_findByAttribute:@"done" withValue:@"0" inContext:[NSManagedObjectContext MR_defaultContext]]];
     hasReadBookArray = [NSMutableArray arrayWithArray:[Book MR_findByAttribute:@"done" withValue:@"1" inContext:[NSManagedObjectContext MR_defaultContext]]];
@@ -75,6 +76,7 @@
     BookTableViewCell* cell = [self.tableView dequeueReusableCellWithIdentifier:identifier forIndexPath:indexPath];
     [cell initWithBook:book];
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    
     return cell;
 }
 
@@ -131,6 +133,11 @@
     BookViewController* vc = [self.storyboard instantiateViewControllerWithIdentifier:@"BookViewController"];
     [vc setBook:bookArray[indexPath.section][indexPath.row]];
     [self.navigationController pushViewController:vc animated:true];
+}
+
+- (IBAction)filterButton:(id)sender {
+    NSLog(@"Filter Button is clicked!!!!!!");
+    
 }
 
 @end
