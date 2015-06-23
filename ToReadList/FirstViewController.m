@@ -129,9 +129,13 @@ typedef enum {
                        [tableView deleteRowsAtIndexPaths:@[ indexPath ] withRowAnimation:UITableViewRowAnimationAutomatic];
                        [self checkBookListIsEmpty];
                    }];
+    NSString* completeTitle = indexPath.section == 0 ? @"Done" : @"UnRead";
+    if (filter != ALL) {
+        completeTitle = filter == TOREAD ? @"DONE" : @"UnRead";
+    }
     UITableViewRowAction* completeAction = [UITableViewRowAction
         rowActionWithStyle:UITableViewRowActionStyleNormal
-                     title:indexPath.section == 0 ? @"Done" : @"UnRead"
+                     title:completeTitle
                    handler:^(UITableViewRowAction* action, NSIndexPath* indexPath) {
                        int section = [self getFilterSection:indexPath.section];
                        unsigned long anotherSection = (section + 1) % bookArray.count;
